@@ -11,3 +11,4 @@ steps:
         curl DOMAIN_NAME + "/publish/v2/upload-url?appId=" + APPID + "&suffix=" + SUFFIX -H "Content-Type: application/json" -H "Authorization: Bearer " + TOKEN -H "client_id: " + CLIENTID
         curl -X POST UPLOADURL -F "file=@<< parameters.path >>" -F "authCode=" + AUTHCODE -F "fileCount=1" -F "parseType=1"
       name: Get upload url and upload given file path
+      
