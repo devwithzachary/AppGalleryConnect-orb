@@ -1,6 +1,6 @@
 # AppGalleryConnect-orb
 
-[![CircleCI Build Status](https://circleci.com/gh/devwithzachary/AppGalleryConnect-orb/tree/main.svg?style=shield)]https://github.com/devwithzachary/AppGalleryConnect-orb)
+[CircleCI Build Status](https://circleci.com/gh/devwithzachary/AppGalleryConnect-orb/tree/main.svg?style=shield)
 
 CircleCi Orb for uploading Android applications to AppGallery.
 

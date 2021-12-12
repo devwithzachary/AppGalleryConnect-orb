@@ -32,7 +32,7 @@ jobs:
           path: ~/build/apk/android.apk
           secret: test
           clientid: test
-          appid: 0
+          appid: "0"
           suffix: apk
 
 workflows:
