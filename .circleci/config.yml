@@ -30,6 +30,10 @@ jobs:
       - checkout
       - appgalleryconnect/upload:
           path: ~/build/apk/android.apk
+          secret: 00000000000000
+          clientid: 000000000000000
+          appid: 0
+          suffix: apk
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
