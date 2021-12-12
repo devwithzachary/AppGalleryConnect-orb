@@ -3,7 +3,7 @@ description: |
 parameters:
   path:
     description: absolute or relative path to the android app file you wish to upload.
-    default: "~/build/apk/android.apk"
+    default: ~/build/apk/android.apk
     type: string
 steps:
   - run:
