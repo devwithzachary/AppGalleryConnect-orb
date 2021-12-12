@@ -27,7 +27,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout.
+      - checkout
       - appgalleryconnect/upload
 
 workflows:
