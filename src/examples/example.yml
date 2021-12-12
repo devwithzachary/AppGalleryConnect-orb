@@ -10,4 +10,9 @@ usage:
   workflows:
     use-my-orb:
       jobs:
-        - <orb-name>/<job-name>
+        - appgalleryconnect/upload:
+          path: ~/build/apk/android.apk
+          secret: 00000000000000
+          clientid: 000000000000000
+          appid: 0
+          suffix: apk
