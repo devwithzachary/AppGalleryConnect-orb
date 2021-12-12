@@ -12,7 +12,7 @@ usage:
       jobs:
         - appgalleryconnect/upload:
           path: ~/build/apk/android.apk
-          secret: 00000000000000
-          clientid: 000000000000000
-          appid: 0
-          suffix: apk
+          #secret: 00000000000000
+          #clientid: 000000000000000
+          #appid: 0
+          #suffix: apk
