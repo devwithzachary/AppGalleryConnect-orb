@@ -39,12 +39,12 @@ steps:
         parameters.appid >>&suffix=<< parameters.suffix >>' | jq '{authCode:
         .authCode, name: .uploadUrl}')
 
-        UPLOADURL=$(UPLOADARRAY | jq .uploadUrl)
+        UPLOADURL='$UPLOADARRAY | jq .uploadUrl'
 
-        UPLOADAUTH=$(UPLOADARRAY | jq .authCode)
+        UPLOADAUTH='$UPLOADARRAY | jq .authCode'
 
         curl -XPOST -H 'accept: application/json' -H "Content-type:
         application/json" -F "file=@<< parameters.path >>" -F
-        'authCode='"$UPLOADAUTH"' -F "fileCount=1" -F "parseType=1"
+        'authCode="$UPLOADAUTH"' -F "fileCount=1" -F "parseType=1"
         '"$UPLOADURL"'
       name: Get upload url and upload given file path
