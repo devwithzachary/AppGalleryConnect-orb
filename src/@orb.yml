@@ -1,11 +1,9 @@
 version: 2.1
-
 description: >
-  Allow the upload of an Android application to AppGallery via the AppGallery Connect API
-  Note that the JQ package is required to be already installed in your job before using this orb
-  This can be added using https://circleci.com/developer/orbs/orb/circleci/jq
-
+  Allow the upload of an Android application to AppGallery via the AppGallery
+  Connect API Note that the JQ package is required to be already installed in
+  your job before using this orb This can be added using
+  https://circleci.com/developer/orbs/orb/circleci/jq
 display:
-  home_url: "https://developer.huawei.com/consumer/en/"
-  source_url: "https://github.com/devwithzachary/AppGalleryConnect-orb"
-  
+  home_url: 'https://developer.huawei.com/consumer/en/'
+  source_url: 'https://github.com/devwithzachary/AppGalleryConnect-orb'
