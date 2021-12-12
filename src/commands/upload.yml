@@ -23,6 +23,10 @@ parameters:
   suffix:
     description: 'suffix File name extension, such as apk or aab'
     type: string
+  test:
+    description: 'Is this commend being run as a test? (no actual file top upload)'
+    type: string
+    default: 'false'
 steps:
   - run:
       command: >
@@ -43,8 +47,10 @@ steps:
 
         UPLOADAUTH='$UPLOADARRAY | jq .authCode'
 
-        curl -XPOST -H 'accept: application/json' -H "Content-type:
-        application/json" -F "file=@<< parameters.path >>" -F
-        'authCode="$UPLOADAUTH"' -F "fileCount=1" -F "parseType=1"
-        '"$UPLOADURL"'
+        if [ "false" = "<< parameters.test >>" ]; then
+          curl -XPOST -H 'accept: application/json' -H "Content-type:
+          application/json" -F "file=@<< parameters.path >>" -F
+          'authCode="$UPLOADAUTH"' -F "fileCount=1" -F "parseType=1"
+          '"$UPLOADURL"'
+        fi
       name: Get upload url and upload given file path
