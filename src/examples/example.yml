@@ -16,3 +16,4 @@ usage:
             clientid: test
             appid: "0"
             suffix: apk
+            test: 'false'
