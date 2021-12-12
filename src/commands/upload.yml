@@ -48,9 +48,8 @@ steps:
         UPLOADAUTH='$UPLOADARRAY | jq .authCode'
 
         if [ "false" = "<< parameters.test >>" ]; then
-          curl -XPOST -H 'accept: application/json' -H "Content-type:
-          application/json" -F "file=@<< parameters.path >>" -F
-          'authCode="$UPLOADAUTH"' -F "fileCount=1" -F "parseType=1"
-          '"$UPLOADURL"'
+
+          curl -XPOST -H 'accept: application/json' -H "Content-type: application/json" -F "file=@<< parameters.path >>" -F 'authCode="$UPLOADAUTH"' -F "fileCount=1" -F "parseType=1" '"$UPLOADURL"'
+          
         fi
       name: Get upload url and upload given file path
