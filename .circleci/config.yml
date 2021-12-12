@@ -32,9 +32,9 @@ jobs:
           path: ~/build/apk/android.apk
           secret: test
           clientid: test
-          appid: "0"
+          appid: '0'
           suffix: apk
-          test: "true"
+          test: 'true'
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.

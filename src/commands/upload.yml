@@ -24,7 +24,7 @@ parameters:
     description: 'suffix File name extension, such as apk or aab'
     type: string
   test:
-    description: 'Is this commend being run as a test? (no actual file top upload)'
+    description: Is this commend being run as a test? (no actual file top upload)
     type: string
     default: 'false'
 steps:
