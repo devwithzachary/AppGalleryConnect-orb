@@ -1,0 +1,13 @@
+description: |
+  "Upload your build Android binary (APK/AAB) to AppGallery"
+parameters:
+  path:
+    description: absolute or relative path to the android app file you wish to upload.
+    type: string
+steps:
+  - run:
+      command: |
+        curl -X PUT DOMAIN_NAME + "/oauth2/v1/token" -H "Content-Type: application/json" -H "Authorization: Bearer " + TOKEN -H "client_id: " + CLIENTID -d '{"client_id": CLIENTID, "client_secret":CLIENTSECRET, "grant_type":"client_credentials"}'
+        curl DOMAIN_NAME + "/publish/v2/upload-url?appId=" + APPID + "&suffix=" + SUFFIX -H "Content-Type: application/json" -H "Authorization: Bearer " + TOKEN -H "client_id: " + CLIENTID
+        curl -X POST UPLOADURL -F "file=@<< parameters.path >>" -F "authCode=" + AUTHCODE -F "fileCount=1" -F "parseType=1"
+      name: Get upload url and upload given file path

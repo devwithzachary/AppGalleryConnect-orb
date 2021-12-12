@@ -1,11 +1,11 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Example use case with an example config to build android project and upload it to AppGallery.
+  This is just one way this could be achived.
 usage:
   version: 2.1
   orbs:
+    android: circleci/android@1.0.3
+    jq: circleci/jq@2.2.0
     <orb-name>: <namespace>/<orb-name>@1.2.3
   workflows:
     use-my-orb:
