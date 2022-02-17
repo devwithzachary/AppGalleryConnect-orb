@@ -30,16 +30,23 @@ parameters:
 steps:
   - run:
       command: >
-       
-        ACCESS_TOKEN=$(curl -XPOST -H "Content-type: application/json" -d '{"client_id":"<< parameters.clientid >>", "client_secret":"<< parameters.secret >>", "grant_type":"client_credentials"}' 'https://connect-api.cloud.huawei.com/api/oauth2/v1/token' | ./jq '.access_token')
+        ACCESS_TOKEN=$(curl -XPOST -H "Content-type: application/json" -d
+        '{"client_id":"<< parameters.clientid >>", "client_secret":"<<
+        parameters.secret >>", "grant_type":"client_credentials"}'
+        'https://connect-api.cloud.huawei.com/api/oauth2/v1/token' | ./jq
+        '.access_token')
 
         ACCESS_TOKEN=$(echo "$ACCESS_TOKEN" | sed -e 's/^"//' -e 's/"$//')
 
+        UPLOADARRAY=$(curl -XGET -H "Authorization: Bearer $ACCESS_TOKEN" -H
+        'client_id: << parameters.clientid >>' -H
+        "Content-type:application/json"
+        'https://connect-api.cloud.huawei.com/api/publish/v2/upload-url?appId=<<parameters.appid
+        >>&suffix=<< parameters.suffix >>' | ./jq '{authCode: .authCode, name:
+        .uploadUrl}')
 
-        UPLOADARRAY=$(curl -XGET -H "Authorization: Bearer $ACCESS_TOKEN" -H 'client_id: << parameters.clientid >>' -H "Content-type:application/json" 'https://connect-api.cloud.huawei.com/api/publish/v2/upload-url?appId=<<parameters.appid >>&suffix=<< parameters.suffix >>' | ./jq '{authCode: .authCode, name: .uploadUrl}')
-
-        UPLOADURL=$(echo $UPLOADARRAY | ./jq .name)
-        UPLOADAUTH=$(echo $UPLOADARRAY | ./jq .authCode)
+        UPLOADURL=$(echo $UPLOADARRAY | ./jq .name) UPLOADAUTH=$(echo
+        $UPLOADARRAY | ./jq .authCode)
 
         UPLOADURL=$(echo "$UPLOADURL" | sed -e 's/^"//' -e 's/"$//')
         UPLOADAUTH=$(echo "$UPLOADAUTH" | sed -e 's/^"//' -e 's/"$//')
