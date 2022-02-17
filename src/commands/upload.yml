@@ -60,4 +60,3 @@ steps:
 
         fi
       name: Get upload url and upload given file path
- 
