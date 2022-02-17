@@ -45,7 +45,7 @@ steps:
         >>&suffix=<< parameters.suffix >>' | jq '{authCode: .authCode, name:
         .uploadUrl}')
 
-        UPLOADURL=$(echo $UPLOADARRAY | jq .name) 
+        UPLOADURL=$(echo $UPLOADARRAY | jq .name)
         UPLOADAUTH=$(echo $UPLOADARRAY | jq .authCode)
 
         UPLOADURL=$(echo "$UPLOADURL" | sed -e 's/^"//' -e 's/"$//')
