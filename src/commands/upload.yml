@@ -45,11 +45,19 @@ steps:
         >>&suffix=<< parameters.suffix >>' | jq '{authCode: .authCode, name:
         .uploadUrl}')
 
+        echo $UPLOADARRAY
+
         UPLOADURL=$(echo $UPLOADARRAY | jq .name)
         UPLOADAUTH=$(echo $UPLOADARRAY | jq .authCode)
 
+        echo $UPLOADURL
+        echo $UPLOADAUTH
+
         UPLOADURL=$(echo "$UPLOADURL" | sed -e 's/^"//' -e 's/"$//')
         UPLOADAUTH=$(echo "$UPLOADAUTH" | sed -e 's/^"//' -e 's/"$//')
+
+        echo $UPLOADURL
+        echo $UPLOADAUTH
 
         if [ "false" = "<< parameters.test >>" ]; then
 
