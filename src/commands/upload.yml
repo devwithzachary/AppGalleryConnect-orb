@@ -35,8 +35,6 @@ steps:
         parameters.secret >>", "grant_type":"client_credentials"}'
         'https://connect-api.cloud.huawei.com/api/oauth2/v1/token' )
 
-        echo $ACCESS_TOKEN
-
         ACCESS_TOKEN=$(echo "$ACCESS_TOKEN" | jq '.access_token')
 
         ACCESS_TOKEN=$(echo "$ACCESS_TOKEN" | sed -e 's/^"//' -e 's/"$//')
@@ -48,26 +46,20 @@ steps:
         >>&suffix=<< parameters.suffix >>' | jq '{authCode: .authCode, name:
         .uploadUrl}')
 
-        echo $UPLOADARRAY
-
         UPLOADURL=$(echo $UPLOADARRAY | jq .name)
 
         UPLOADAUTH=$(echo $UPLOADARRAY | jq .authCode)
-
-        echo $UPLOADURL $UPLOADAUTH
 
         UPLOADURL=$(echo "$UPLOADURL" | sed -e 's/^"//' -e 's/"$//')
 
         UPLOADAUTH=$(echo "$UPLOADAUTH" | sed -e 's/^"//' -e 's/"$//')
 
-        echo $UPLOADURL $UPLOADAUTH
-
         if [ "false" = "<< parameters.test >>" ]; then
 
           FILEURL=$(curl -v -XPOST -H "Authorization: Bearer $ACCESS_TOKEN" -H 'client_id:<< parameters.clientid >>' -H "Content-type: application/json" -F "file=@<< parameters.path >>" -F "authCode=$UPLOADAUTH" -F "fileCount=1" -F "parseType=1" $UPLOADURL | jq '.result.UploadFileRsp.fileInfoList[0].fileDestUlr')
 
-          curl -XPUT -H "Authorization: Bearer $ACCESS_TOKEN" -H 'client_id: << parameters.clientid >>' -H "Content-type: application/json" -d "{'fileType':5, 'files':{'fileName':'app.apk','fileDestUrl':$FILEURL}}" 'https://connect-api.cloud.huawei.com/api/publish/v2/app-file-info?appId=<<parameters.appid >>
-          curl -XPOST -H "Authorization: Bearer $ACCESS_TOKEN" -H 'client_id: << parameters.clientid >>' -H "Content-type: application/json" 'https://connect-api.cloud.huawei.com/api/publish/v2/app-submit?appId=<<parameters.appid >>
+          curl -XPUT -H "Authorization: Bearer $ACCESS_TOKEN" -H 'client_id: << parameters.clientid >>' -H "Content-type: application/json" -d "{'fileType':5, 'files':{'fileName':'app.apk','fileDestUrl':$FILEURL}}" 'https://connect-api.cloud.huawei.com/api/publish/v2/app-file-info?appId=<<parameters.appid >>'
+          curl -XPOST -H "Authorization: Bearer $ACCESS_TOKEN" -H 'client_id: << parameters.clientid >>' -H "Content-type: application/json" 'https://connect-api.cloud.huawei.com/api/publish/v2/app-submit?appId=<<parameters.appid >>'
 
         fi
       name: Get upload url and upload given file path
